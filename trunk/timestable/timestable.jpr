@@ -60,7 +60,7 @@
    </hash>
    <hash n="oracle.jdeveloper.deploy.dt.DeploymentProfiles">
       <hash n="profileDefinitions">
-         <hash n="timetable">
+         <hash n="timestable">
             <hash n="archiveOptions">
                <value n="hasManifest" v="true"/>
             </hash>
@@ -140,13 +140,13 @@
                   </hash>
                </list>
             </hash>
-            <url n="jarURL" path="deploy/timetable.jar"/>
+            <url n="jarURL" path="deploy/timestable.jar"/>
             <value n="profileClass" v="oracle.jdeveloper.deploy.jar.ArchiveProfile"/>
-            <value n="profileName" v="timetable"/>
+            <value n="profileName" v="timestable"/>
          </hash>
       </hash>
       <list n="profileList">
-         <string v="timetable"/>
+         <string v="timestable"/>
       </list>
    </hash>
    <hash n="oracle.jdeveloper.model.J2eeSettings">
