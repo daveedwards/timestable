@@ -186,6 +186,8 @@ public class TimesTableFrame
         }
       }
       });
+    tblTimes.setShowHorizontalLines( false );
+    tblQuestions.setShowHorizontalLines( false );
   }
 
   /**

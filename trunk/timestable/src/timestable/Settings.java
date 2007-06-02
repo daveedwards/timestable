@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class Settings
 {
-  private static String FILENAME = "TimesTable.txt";
+  private static String FILENAME = ".TimesTable.txt";
   private static Integer DEFAULTNO = Integer.valueOf( 30 );
 
   private Integer noQuestions = null;
