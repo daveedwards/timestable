@@ -2,6 +2,7 @@
 <jpr:project xmlns:jpr="http://xmlns.oracle.com/ide/project">
    <hash n="component-versions">
       <value n="oracle.adfdt.controller.jsf2.diagram.migrate.JsfNodeMigratorHelper" v="11.1.1.0.0"/>
+      <value n="oracle.adfdt.controller.struts.addin.StrutsProjectMigrator" v="11.1.1.0.0"/>
       <value n="oracle.bm.commonIde.ProjectUpgrader" v="11.1.1.0.0"/>
       <value n="oracle.bm.migration.project.MigratorRegistryProjectUpgradeAdapter" v="11.1.1.0.0"/>
       <value n="oracle.ide.model.Project" v="11.1.1.0.0"/>
