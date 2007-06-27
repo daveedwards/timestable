@@ -1,1 +1,1 @@
-java -client -classpath timestable_1.jar timestable.TimesTableApplication
+java -client -classpath timestable_2.jar timestable.TimesTableApplication
