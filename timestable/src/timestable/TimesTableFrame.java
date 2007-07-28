@@ -20,6 +20,8 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import java.util.Random;
+
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -60,6 +62,8 @@ public class TimesTableFrame
 
   private JCheckBox chbMultiply = new JCheckBox();
 
+  private JCheckBox chbUnderScore = new JCheckBox();
+  
   private JScrollPane jScrollPane1 = new JScrollPane();
 
   private JTable tblTimes = new JTable( new TimesTableModel() );
@@ -128,6 +132,7 @@ public class TimesTableFrame
     
     chbDivide.setText( "Divide" );
     chbMultiply.setText( "Multiply" );
+    chbUnderScore.setText( "Under Score" );
     lblRows.setText( "Rows:" );
     menuFile.add( menuFilePrint );
     menuFile.add( menuFileExit );
@@ -147,13 +152,18 @@ public class TimesTableFrame
                      new GridBagConstraints( 2, 0, 1, 1, 0.0, 0.0,GridBagConstraints.CENTER, GridBagConstraints.NONE,
                                              new Insets( 5, 5, 5, 5 ), 0,
                                              0 ) );
+    panelCenter.add( chbUnderScore,
+                     new GridBagConstraints( 3, 0, 1, 1, 0.0, 0.0,GridBagConstraints.CENTER, GridBagConstraints.NONE,
+                                             new Insets( 5, 5, 5, 5 ), 0,
+                                             0 ) );
+
     panelCenter.add( lblRows,
-                     new GridBagConstraints( 3, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST,
+                     new GridBagConstraints( 4, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST,
                                              GridBagConstraints.NONE,
                                              new Insets( 5, 5, 5, 5 ), 0,
                                              0 ) );
     panelCenter.add( spNoRows,
-                     new GridBagConstraints( 4, 0, 1, 1, 1.0, 0.0,
+                     new GridBagConstraints( 5, 0, 1, 1, 1.0, 0.0,
                                              GridBagConstraints.CENTER,
                                              GridBagConstraints.HORIZONTAL,
                                              new Insets( 5, 5, 5, 5 ), 0,
@@ -161,14 +171,14 @@ public class TimesTableFrame
 
     jScrollPane1.getViewport().add( tblTimes, null );
     panelCenter.add( jScrollPane1,
-                     new GridBagConstraints( 0, 1, 5, 1, 1.0, 1.0,
+                     new GridBagConstraints( 0, 1, 6, 1, 1.0, 1.0,
                                              GridBagConstraints.CENTER,
                                              GridBagConstraints.BOTH,
                                              new Insets( 0, 0, 0, 0 ), 0,
                                              0 ) );
     jScrollPane2.getViewport().add( tblQuestions, null );
     panelCenter.add( jScrollPane2,
-                     new GridBagConstraints( 0, 3, 5, 1, 1.0, 2.0, GridBagConstraints.CENTER,
+                     new GridBagConstraints( 0, 3, 6, 1, 1.0, 2.0, GridBagConstraints.CENTER,
                                              GridBagConstraints.BOTH,
                                              new Insets( 0, 0, 0, 0 ), 0,
                                              0 ) );                                         
@@ -214,6 +224,15 @@ public class TimesTableFrame
     } );
 
     chbMultiply.addActionListener( new ActionListener()
+    {
+      public void actionPerformed( ActionEvent e )
+      {
+        checkBoxActionPerformed( e );
+      }
+
+    } );
+
+    chbUnderScore.addActionListener( new ActionListener()
     {
       public void actionPerformed( ActionEvent e )
       {
@@ -278,7 +297,7 @@ public class TimesTableFrame
     QuestionTableModel model = ((QuestionTableModel)tblQuestions.getModel());
     TimesTableModel timesModel = (TimesTableModel)tblTimes.getModel();
     Collection<Integer> numbers = timesModel.getSelectedItems();
-    
+    UnderScoreQuestion underScore = new UnderScoreQuestion();
 
     model.removeAll();
     
@@ -296,11 +315,14 @@ public class TimesTableFrame
   
     int row=0;
     int trys = 0;
+    boolean underScoreSelected = chbUnderScore.isSelected();
+    
     while ( row < nrows && trys < 2000 )
     {
       String symbol = compSymbol.getSymbol( want );
       Computation comp = cpFactory.getFactory( symbol );
-      String question = comp.getQuestion( numbers );
+      
+      String question = comp.getQuestion( numbers, underScore.askUnderScore( underScoreSelected ) );
 
       if ( !model.contains( question ) )
       {
@@ -400,5 +422,21 @@ public class TimesTableFrame
     
     
   }
-  
+
+  private class UnderScoreQuestion
+  {
+    private Random under = new Random();
+    
+    private boolean askUnderScore( boolean underScore )
+    {
+      int want = under.nextInt( 4 );
+
+      if ( underScore && want <= 1 )
+      {
+        return true;
+      }
+      
+      return false;
+    }
+  }
 }

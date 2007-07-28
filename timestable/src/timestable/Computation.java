@@ -4,5 +4,5 @@ import java.util.Collection;
 
 public interface Computation
 {
-  String getQuestion( Collection want );
+  String getQuestion( Collection want, boolean underScore );
 }
