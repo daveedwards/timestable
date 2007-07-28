@@ -8,7 +8,7 @@ public class ComputationSymbol
   public static String OF = "of";
   public static String DIVIDE = "/";
   public static String MULTIPLY = "*";
-  
+
   private Random generator = new Random(); 
   
   String getSymbol( Collection<String> want )

@@ -10,7 +10,7 @@ public class MultiplyComputation extends BaseComputation
   private Random selection = new Random();
   private Random wanted = new Random();
   
-  public String getQuestion( Collection want )
+  public String getQuestion( Collection want, boolean underScore )
   {
     int place = position.nextInt( 2 ) + 1;
     int select = selection.nextInt( 11 );
@@ -20,17 +20,40 @@ public class MultiplyComputation extends BaseComputation
     
     if ( place == 1 )
     {
-      buf.append( wantInt );
+      if ( underScore )
+      {
+        buf.append( "__");
+      }
+      else
+      {
+        buf.append( wantInt );
+      }
       buf.append( " x ");
       buf.append( select );
       buf.append( " = ");
+      if ( underScore )
+      {
+        buf.append( wantInt * select );
+      }
     }
     else if ( place == 2 )
     {
       buf.append( select );
       buf.append( " x ");
-      buf.append( wantInt );
+      if ( underScore )
+      {
+        buf.append( "__");
+      }
+      else
+      {
+        buf.append( wantInt );
+      }
       buf.append( " = ");
+      if ( underScore )
+      {
+        buf.append( wantInt * select );
+      }
+      
     }
     
     return buf.toString();

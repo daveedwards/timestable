@@ -9,7 +9,7 @@ public class DivideComputation extends BaseComputation implements Computation
   private Random wantRan = new Random();
   private static char [] divide = {'\u223B'};
   
-  public String getQuestion( Collection want )
+  public String getQuestion( Collection want, boolean underscore )
   {
     int answer = answerRan.nextInt( 11 );
     int wanted = wantRan.nextInt( want.size() );
@@ -20,9 +20,20 @@ public class DivideComputation extends BaseComputation implements Computation
     buf1.append( ' ' );
     buf1.append( divide );
     buf1.append( ' ' );
-    buf1.append( wantInt );
+    if ( underscore )
+    {
+      buf1.append( "__");
+    }
+    else
+    {
+      buf1.append( wantInt );
+    }
     buf1.append( " = ");
     
+    if ( underscore )
+    {
+      buf1.append( answer );
+    }
     
     return buf1.toString();
   }
