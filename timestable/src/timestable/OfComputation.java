@@ -16,17 +16,17 @@ public class OfComputation extends BaseComputation implements Computation
     
     StringBuilder buf = new StringBuilder();
     
+    buf.append( "1/");
+    buf.append( wantInt );
+    buf.append( " of " );   
     if ( underscore )
     {
       buf.append( "__");
     }
     else
     {
-      buf.append( "1/");
-      buf.append( wantInt );
+      buf.append( wantInt.intValue() * answer );
     }
-    buf.append( " of " );    
-    buf.append( wantInt.intValue() * answer );
     buf.append( " = ");
     if ( underscore )
     {
