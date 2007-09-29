@@ -413,8 +413,12 @@ public class TimesTableFrame
      */
     private int getMaxPageNumber( )
     {
-      float num = questions.size() / QUSTION_PAGE ;
+      float num = (float)questions.size() / (float)QUSTION_PAGE ;
       
+      if ( ((int)num * QUSTION_PAGE) == questions.size() )
+
+        return (int)num;
+          
       // add 0.5 so we round up
       return ( int ) Math.round( num + 0.5 );
       
