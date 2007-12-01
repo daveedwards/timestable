@@ -324,12 +324,16 @@ public class TimesTableFrame
       
       String question = comp.getQuestion( numbers, underScore.askUnderScore( underScoreSelected ) );
 
-      if ( !model.contains( question ) )
+      // don't want Q 0 * _ = 0 or _ * 0 = 0
+      if ( !rejectQuestion( question ) )
       {
-        model.setValueAt( question, row, 0 );
-        row++;
+        if ( !model.contains( question ) )
+        {
+          model.setValueAt( question, row, 0 );
+          row++;
+        }
+        trys++;
       }
-      trys++;
     }
     
     model.fireTableDataChanged();
@@ -349,6 +353,21 @@ public class TimesTableFrame
     {
       want.add( ComputationSymbol.MULTIPLY );
     }
+  }
+
+  private boolean rejectQuestion(String question)
+  {
+    String parts[] = question.split( "=" );
+    
+    if ( parts.length >= 2 )
+    {
+      if (parts[1].indexOf( "0") > -1 && parts[0].indexOf( "0" ) > -1 )
+      {
+        return true;
+      }
+    }
+    
+    return false;
   }
 
 
