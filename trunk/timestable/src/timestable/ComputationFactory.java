@@ -5,6 +5,7 @@ public class ComputationFactory
   private Computation divideQuestion = new DivideComputation();
   private Computation ofQuestion = new OfComputation();
   private Computation multiplyQuestion = new MultiplyComputation();
+  private Computation doubleQuestion = new DoubleComputation();
 
   
   Computation getFactory( String compSymbol )
@@ -21,7 +22,12 @@ public class ComputationFactory
     {
       return multiplyQuestion;
     }
+    if ( compSymbol.equals( ComputationSymbol.DOUBLE ) )
+    {
+      return doubleQuestion;
+    }
     
     return null;
   }
+
 }

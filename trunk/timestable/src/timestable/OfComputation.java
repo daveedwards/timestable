@@ -8,7 +8,7 @@ public class OfComputation extends BaseComputation implements Computation
   private Random answerRan = new Random();
   private Random wantRan = new Random();
 
-  public String getQuestion( Collection want, boolean underscore )
+  public String getQuestion( Collection<Integer> want, boolean underscore )
   {
     int answer = answerRan.nextInt( 11 );
     int wanted = wantRan.nextInt( want.size() );
