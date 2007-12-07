@@ -64,6 +64,8 @@ public class TimesTableFrame
 
   private JCheckBox chbUnderScore = new JCheckBox();
   
+  private JCheckBox chbDouble = new JCheckBox();
+  
   private JScrollPane jScrollPane1 = new JScrollPane();
 
   private JTable tblTimes = new JTable( new TimesTableModel() );
@@ -102,7 +104,7 @@ public class TimesTableFrame
   {
     this.setJMenuBar( menuBar );
     this.getContentPane().setLayout( layoutMain );
-    this.setSize( new Dimension(450, 600) );
+    this.setSize( new Dimension(550, 600) );
     panelCenter.setLayout( gridBagLayout1 );
     menuFile.setText( "File" );
     menuFileExit.setText( "Exit" );
@@ -133,7 +135,9 @@ public class TimesTableFrame
     chbDivide.setText( "Divide" );
     chbMultiply.setText( "Multiply" );
     chbUnderScore.setText( "Under Score" );
+    chbDouble.setText( "Double" );
     lblRows.setText( "Rows:" );
+    
     menuFile.add( menuFilePrint );
     menuFile.add( menuFileExit );
     menuBar.add( menuFile );
@@ -152,18 +156,23 @@ public class TimesTableFrame
                      new GridBagConstraints( 2, 0, 1, 1, 0.0, 0.0,GridBagConstraints.CENTER, GridBagConstraints.NONE,
                                              new Insets( 5, 5, 5, 5 ), 0,
                                              0 ) );
-    panelCenter.add( chbUnderScore,
+    panelCenter.add( chbDouble,
                      new GridBagConstraints( 3, 0, 1, 1, 0.0, 0.0,GridBagConstraints.CENTER, GridBagConstraints.NONE,
                                              new Insets( 5, 5, 5, 5 ), 0,
                                              0 ) );
 
+    panelCenter.add( chbUnderScore,
+                     new GridBagConstraints( 4, 0, 1, 1, 0.0, 0.0,GridBagConstraints.CENTER, GridBagConstraints.NONE,
+                                             new Insets( 5, 5, 5, 5 ), 0,
+                                             0 ) );
+
     panelCenter.add( lblRows,
-                     new GridBagConstraints( 4, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST,
+                     new GridBagConstraints( 5, 0, 1, 1, 0.0, 0.0, GridBagConstraints.WEST,
                                              GridBagConstraints.NONE,
                                              new Insets( 5, 5, 5, 5 ), 0,
                                              0 ) );
     panelCenter.add( spNoRows,
-                     new GridBagConstraints( 5, 0, 1, 1, 1.0, 0.0,
+                     new GridBagConstraints( 6, 0, 1, 1, 1.0, 0.0,
                                              GridBagConstraints.CENTER,
                                              GridBagConstraints.HORIZONTAL,
                                              new Insets( 5, 5, 5, 5 ), 0,
@@ -171,14 +180,14 @@ public class TimesTableFrame
 
     jScrollPane1.getViewport().add( tblTimes, null );
     panelCenter.add( jScrollPane1,
-                     new GridBagConstraints( 0, 1, 6, 1, 1.0, 1.0,
+                     new GridBagConstraints( 0, 1, 7, 1, 1.0, 1.0,
                                              GridBagConstraints.CENTER,
                                              GridBagConstraints.BOTH,
                                              new Insets( 0, 0, 0, 0 ), 0,
                                              0 ) );
     jScrollPane2.getViewport().add( tblQuestions, null );
     panelCenter.add( jScrollPane2,
-                     new GridBagConstraints( 0, 3, 6, 1, 1.0, 2.0, GridBagConstraints.CENTER,
+                     new GridBagConstraints( 0, 3, 7, 1, 1.0, 2.0, GridBagConstraints.CENTER,
                                              GridBagConstraints.BOTH,
                                              new Insets( 0, 0, 0, 0 ), 0,
                                              0 ) );                                         
@@ -237,6 +246,16 @@ public class TimesTableFrame
       public void actionPerformed( ActionEvent e )
       {
         checkBoxActionPerformed( e );
+
+      }
+
+    } );
+
+    chbDouble.addActionListener( new ActionListener()
+    {
+      public void actionPerformed( ActionEvent e )
+      {
+        checkBoxActionPerformed( e );
       }
 
     } );
@@ -245,7 +264,10 @@ public class TimesTableFrame
 
   private void checkBoxActionPerformed( ActionEvent e )
   {
-    if ( !chbOf.isSelected() && !chbDivide.isSelected() && !chbMultiply.isSelected() )
+    if ( !chbOf.isSelected() && 
+         !chbDivide.isSelected() && 
+         !chbMultiply.isSelected() && 
+         !chbDouble.isSelected() )
     {
       computation = false;
     }
@@ -293,7 +315,7 @@ public class TimesTableFrame
    */
   private void displayQuestions()
   {
-    Collection<String> want = new ArrayList( 3 );
+    Collection<String> want = new ArrayList( 4 );
     QuestionTableModel model = ((QuestionTableModel)tblQuestions.getModel());
     TimesTableModel timesModel = (TimesTableModel)tblTimes.getModel();
     Collection<Integer> numbers = timesModel.getSelectedItems();
@@ -352,6 +374,10 @@ public class TimesTableFrame
     if ( chbMultiply.isSelected() )
     {
       want.add( ComputationSymbol.MULTIPLY );
+    }
+    if ( chbDouble.isSelected() )
+    {
+      want.add( ComputationSymbol.DOUBLE );
     }
   }
 

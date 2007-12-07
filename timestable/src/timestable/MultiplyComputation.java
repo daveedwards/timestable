@@ -10,7 +10,7 @@ public class MultiplyComputation extends BaseComputation
   private Random selection = new Random();
   private Random wanted = new Random();
   
-  public String getQuestion( Collection want, boolean underScore )
+  public String getQuestion( Collection<Integer> want, boolean underScore )
   {
     int place = position.nextInt( 2 ) + 1;
     int select = selection.nextInt( 11 );

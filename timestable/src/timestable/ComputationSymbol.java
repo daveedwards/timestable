@@ -8,6 +8,7 @@ public class ComputationSymbol
   public static String OF = "of";
   public static String DIVIDE = "/";
   public static String MULTIPLY = "*";
+  public static String DOUBLE = "Double";
 
   private Random generator = new Random(); 
   
@@ -16,7 +17,7 @@ public class ComputationSymbol
     while ( true )
     {
     
-      int no = generator.nextInt( 3 ) + 1;
+      int no = generator.nextInt( 4 ) + 1;
       
       switch ( no )
       {
@@ -29,6 +30,9 @@ public class ComputationSymbol
         case 3:
           if ( want.contains( MULTIPLY ) )
             return MULTIPLY;
+        case 4:
+          if ( want.contains( DOUBLE ) )
+            return DOUBLE;
       }
     }
     
