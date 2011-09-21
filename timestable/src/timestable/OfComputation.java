@@ -10,7 +10,7 @@ public class OfComputation extends BaseComputation implements Computation
 
   public String getQuestion( Collection<Integer> want, boolean underscore )
   {
-    int answer = answerRan.nextInt( 11 );
+    int answer = answerRan.nextInt( MAXNUM );
     int wanted = wantRan.nextInt( want.size() );
     Integer wantInt = getWantedNumber( want, wanted );
     

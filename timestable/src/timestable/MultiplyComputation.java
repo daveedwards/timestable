@@ -13,7 +13,7 @@ public class MultiplyComputation extends BaseComputation
   public String getQuestion( Collection<Integer> want, boolean underScore )
   {
     int place = position.nextInt( 2 ) + 1;
-    int select = selection.nextInt( 11 );
+    int select = selection.nextInt( MAXNUM );
     int wantNum = wanted.nextInt( want.size() );
     Integer wantInt = getWantedNumber( want, wantNum );
     StringBuilder buf = new StringBuilder();
