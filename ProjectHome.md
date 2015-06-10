@@ -1,0 +1,5 @@
+Times tables are the building blocks for many more complicated calculations so it is therefore very helpful if these can be learn't as facts as opposed to calculations. Once children understand that multiplication is repeated addition (3 times 4 = 4 + 4 + 4) and linked to division ( 3 times 4 = 12 and 12 / 3 = 4) they are then ready to learn the times tables as facts. This makes larger calculations and problem solving a much quicker and more efficient process.
+
+Children are taught that we can calculate any other multiplication by breaking down the numbers (partitioning) and relating the calculation to facts that they know. For example, 18 times 5 is the same as 10 times 5 added to 8 times 5.
+
+I wrote this Java program to generate a random set of times tables questions because I was having to produce by hand a set of different questions everyday.
